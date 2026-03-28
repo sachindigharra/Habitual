@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, ListChecks, BarChart3, Plus, Sun, Moon, LogOut } from "lucide-react";
+import { LayoutDashboard, ListChecks, BarChart3, Plus, Sun, Moon, LogOut, Footprints } from "lucide-react";
 import { useState, useEffect } from "react";
 import HabitFormDialog from "./habits/HabitFormDialog";
 import { useAuth } from "@/lib/AuthContext";
@@ -8,6 +8,7 @@ const navItems = [
   { path: "/Dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { path: "/Habits", icon: ListChecks, label: "Habits" },
   { path: "/Analytics", icon: BarChart3, label: "Analytics" },
+  { path: "/Running", icon: Footprints, label: "Running" },
 ];
 
 // Dark mode: 7PM (19:00) → 6AM (06:00), Light mode: 6AM → 7PM
@@ -51,7 +52,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen bg-background">
       {/* Top Header */}
-      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/50">
+      <header className="sticky top-0 z-[1000] bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
