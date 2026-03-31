@@ -8,6 +8,7 @@ import Analytics from '@/pages/Analytics'
 import HabitDetail from '@/pages/HabitDetail'
 import Login from '@/pages/Login'
 import Running from '@/pages/Running'
+import Study from '@/pages/Study'
 import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import { DataProvider } from '@/lib/DataContext'
 
@@ -34,6 +35,7 @@ function ProtectedRoutes() {
           <Route path="/Analytics" element={<Analytics />} />
           <Route path="/HabitDetail" element={<HabitDetail />} />
           <Route path="/Running" element={<Running />} />
+          <Route path="/Study" element={<Study />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
