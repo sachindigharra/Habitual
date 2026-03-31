@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, ListChecks, BarChart3, Plus, Sun, Moon, LogOut, Footprints } from "lucide-react";
+import { LayoutDashboard, ListChecks, BarChart3, Plus, Sun, Moon, LogOut, Footprints, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import HabitFormDialog from "./habits/HabitFormDialog";
 import { useAuth } from "@/lib/AuthContext";
@@ -9,6 +9,7 @@ const navItems = [
   { path: "/Habits", icon: ListChecks, label: "Habits" },
   { path: "/Analytics", icon: BarChart3, label: "Analytics" },
   { path: "/Running", icon: Footprints, label: "Running" },
+  { path: "/Study", icon: BookOpen, label: "Study" },
 ];
 
 // Dark mode: 7PM (19:00) → 6AM (06:00), Light mode: 6AM → 7PM
