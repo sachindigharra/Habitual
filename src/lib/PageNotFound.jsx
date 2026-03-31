@@ -1,35 +1,65 @@
-import { useLocation } from 'react-router-dom';
-
+import { useNavigate, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { Home, ArrowLeft } from 'lucide-react'
 
 export default function PageNotFound() {
-  const location = useLocation();
-  const pageName = location.pathname.substring(1);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const pageName = location.pathname.substring(1)
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-slate-50">
-      <div className="max-w-md w-full text-center space-y-6">
-        <div className="space-y-2">
-          <h1 className="text-7xl font-light text-slate-300">404</h1>
-          <div className="h-0.5 w-16 bg-slate-200 mx-auto"></div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background px-6 text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-6 max-w-sm w-full"
+      >
+        {/* Icon */}
+        <div className="relative mx-auto w-32 h-32">
+          <div className="w-32 h-32 rounded-3xl bg-muted flex items-center justify-center">
+            <span className="text-6xl">🗺️</span>
+          </div>
+          <div className="absolute -top-2 -right-2 w-10 h-10 rounded-2xl bg-destructive/10 border-2 border-background flex items-center justify-center">
+            <span className="text-lg font-black text-destructive">!</span>
+          </div>
         </div>
-        <div className="space-y-3">
-          <h2 className="text-2xl font-medium text-slate-800">Page Not Found</h2>
-          <p className="text-slate-600 leading-relaxed">
-            The page <span className="font-medium text-slate-700">"{pageName}"</span> could not be found.
+
+        {/* Text */}
+        <div className="space-y-2">
+          <h1 className="text-7xl font-black text-muted-foreground/20 tracking-tighter">404</h1>
+          <h2 className="text-xl font-bold">Page Not Found</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            The page{' '}
+            {pageName && (
+              <span className="font-medium text-foreground">"{pageName}"</span>
+            )}{' '}
+            doesn't exist or has been moved.
           </p>
         </div>
-        <div className="pt-6">
+
+        {/* Actions */}
+        <div className="flex flex-col gap-2">
           <button
-            onClick={() => window.location.href = '/'}
-            className="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
+            onClick={() => navigate('/Dashboard')}
+            className="flex items-center justify-center gap-2 w-full py-3 bg-primary text-primary-foreground rounded-2xl font-semibold text-sm hover:opacity-90 transition-opacity"
           >
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            Go Home
+            <Home className="w-4 h-4" /> Go to Dashboard
+          </button>
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center justify-center gap-2 w-full py-3 bg-secondary text-secondary-foreground rounded-2xl font-semibold text-sm hover:opacity-80 transition-opacity"
+          >
+            <ArrowLeft className="w-4 h-4" /> Go Back
           </button>
         </div>
-      </div>
+
+        {/* Branding */}
+        <div className="flex items-center justify-center gap-2 pt-2">
+          <img src="/favicon.svg" alt="Habitual" className="w-5 h-5 rounded-md" />
+          <span className="text-xs text-muted-foreground font-medium">Habitual</span>
+        </div>
+      </motion.div>
     </div>
-  );
+  )
 }
